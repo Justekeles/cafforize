@@ -1,0 +1,13 @@
+services:
+  cafforize:
+    build: .
+    container_name: cafforize
+    restart: unless-stopped
+    ports:
+      - "${PORT:-5544}:5544"
+    volumes:
+      - ./data:/srv/cafforize/data
+    environment:
+      - HOST=0.0.0.0
+      - PORT=5544
+      - DATABASE_PATH=data/cafforize.db

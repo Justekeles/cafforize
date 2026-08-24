@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
+  <title>Cafforize</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☕</text></svg>" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand"><span class="brand-icon">☕</span> Cafforize</div>
+      <div class="ratio-pill" id="ratio-pill">
+        <span id="ratio-text">learning your perfect ratio…</span>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="panel calculator">
+        <div class="cup-wrap">
+          <div class="steam"><span></span><span></span><span></span></div>
+          <div class="cup">
+            <div class="cup-liquid" id="cup-liquid"></div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="water">Water</label>
+          <div class="slider-row">
+            <input type="range" id="water-slider" min="0.25" max="6" step="0.25" value="1.5" />
+            <input type="number" id="water" min="0.1" step="0.1" value="1.5" />
+            <span class="unit">units</span>
+          </div>
+        </div>
+
+        <div class="result">
+          <div class="result-number" id="spoons-value">2</div>
+          <div class="result-label">spoons of coffee</div>
+        </div>
+
+        <div class="field actual-row">
+          <label for="actual-spoons">Actually used</label>
+          <div class="slider-row">
+            <input type="number" id="actual-spoons" min="0.1" step="0.25" value="2" />
+            <span class="unit">spoons</span>
+          </div>
+        </div>
+
+        <button class="brew-btn" id="log-btn">Log this brew</button>
+        <p class="hint" id="feedback"></p>
+      </section>
+
+      <section class="panel history">
+        <h2>Brew log</h2>
+        <div class="history-list" id="history-list">
+          <p class="empty">No brews logged yet. Make one!</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    window.CAFFORIZE_DEFAULTS = {
+      water: {{ default_water }},
+      spoons: {{ default_spoons }}
+    };
+  </script>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
